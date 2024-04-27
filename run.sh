@@ -25,10 +25,10 @@ EXPT2=electricity
 mkdir tft_outputs
 
 OUTPUT_FOLDER=./tft_outputs # Path to store data & experiment outputs
-USE_GPU=yes
+USE_GPU=no
 TESTING_MODE=yes # If yes, trains a small model with little data to test script
 
-# Step 1: Setup environment.
+# # Step 1: Setup environment.
 echo
 echo Setting up virtual environment...
 echo
@@ -60,7 +60,7 @@ fi
 pip3 install -r requirements.txt
 
 # # Step 2: Downloads data if not present.
-echo
+# echo
 python -m script_download_data $EXPT1 $OUTPUT_FOLDER
 python -m script_download_data $EXPT2 $OUTPUT_FOLDER
 
@@ -72,3 +72,9 @@ python -m script_train_fixed_params $EXPT2 $OUTPUT_FOLDER $USE_GPU $TEST_MODE
 # # Uncomment below for full hyperparamter optimisation.
 python3 -m script_hyperparam_opt $EXPT1 $OUTPUT_FOLDER $USE_GPU yes
 python3 -m script_hyperparam_opt $EXPT2 $OUTPUT_FOLDER $USE_GPU yes
+
+while true
+do
+    echo "Press [CTRL+C] to stop.."
+    sleep 1
+done
